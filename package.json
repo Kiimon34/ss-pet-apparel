@@ -2,8 +2,10 @@
   "name": "my-sunshine-pet-apparel",
   "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
+ "engines": {
+  "node": ">=18.0.0"
+}
+
   },
   "scripts": {
     "dev": "astro dev",
