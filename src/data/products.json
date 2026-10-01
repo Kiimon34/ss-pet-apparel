@@ -1,0 +1,35 @@
+[
+  {
+    "id": "mountain-blue",
+    "name": "Mountain Blue Collar",
+    "category": "collars",
+    "price": 18.00,
+    "pattern": "Mountain Pine",
+    "sizes": ["Small (10\"-14\")", "Medium (14\"-20\")", "Large (18\"-28\")"],
+    "image": "/images/products/mountain-blue.jpg",
+    "badge": "Best Seller",
+    "description": "Handcrafted durable nylon webbing collar with reinforced box-stitching and contoured buckle."
+  },
+  {
+    "id": "mountain-blue-leash",
+    "name": "Mountain Blue Leash",
+    "category": "leashes",
+    "price": 24.00,
+    "pattern": "Mountain Pine",
+    "sizes": ["5 Foot Standard"],
+    "image": "/images/products/mountain-blue.jpg",
+    "badge": "New Pattern",
+    "description": "Heavy-duty swivel snap hook leash designed for daily walks and outdoor adventures."
+  },
+  {
+    "id": "mountain-car-restraint",
+    "name": "Mountain Blue Seatbelt Restraint",
+    "category": "safety",
+    "price": 16.00,
+    "pattern": "Mountain Pine",
+    "sizes": ["Adjustable (16\"-26\")"],
+    "image": "/images/products/mountain-blue.jpg",
+    "badge": "Travel Essential",
+    "description": "Click-in universal seatbelt tether to keep your dog secure on car rides."
+  }
+]

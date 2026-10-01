@@ -1,0 +1,155 @@
+---
+---
+<div id="cart-drawer-container" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300 opacity-0">
+  <div id="cart-backdrop" class="absolute inset-0 bg-brand-navy/40 backdrop-blur-xs"></div>
+  
+  <aside class="absolute inset-y-0 right-0 flex max-w-full pl-10">
+    <div id="cart-panel" class="w-screen max-w-md transform transition duration-300 translate-x-full bg-white shadow-2xl flex flex-col">
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between border-b border-canvas-200 px-6 py-4">
+        <h2 class="text-lg font-extrabold text-brand-navy">Your Cart</h2>
+        <button id="cart-close-btn" class="p-2 text-brand-muted hover:text-brand-navy">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Cart Item List -->
+      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Injected via JavaScript -->
+        <p id="empty-cart-msg" class="text-center text-sm text-brand-muted py-12">Your cart is empty.</p>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="border-t border-canvas-200 p-6 space-y-4 bg-canvas-50">
+        <div class="flex justify-between text-base font-bold text-brand-navy">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <p class="text-xs text-brand-muted">Taxes and shipping calculated at checkout.</p>
+        <button 
+          id="checkout-btn" 
+          class="w-full rounded-xl bg-brand-navy py-3.5 text-center text-sm font-bold text-white shadow-sm hover:bg-brand-navy/90 transition-all disabled:opacity-50"
+          disabled
+        >
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  interface CartItem {
+    id: string;
+    name: string;
+    price: number;
+    size: string;
+    image: string;
+    quantity: number;
+  }
+
+  let cart: CartItem[] = [];
+
+  const container = document.getElementById('cart-drawer-container')!;
+  const panel = document.getElementById('cart-panel')!;
+  const backdrop = document.getElementById('cart-backdrop')!;
+  const closeBtn = document.getElementById('cart-close-btn')!;
+  const triggerBtn = document.getElementById('cart-trigger')!;
+  const cartBadge = document.getElementById('cart-badge-count')!;
+  const cartItemsContainer = document.getElementById('cart-items')!;
+  const subtotalElem = document.getElementById('cart-subtotal')!;
+  const checkoutBtn = document.getElementById('checkout-btn') as HTMLButtonElement;
+
+  function toggleCart(open: boolean) {
+    if (open) {
+      container.classList.remove('pointer-events-none', 'opacity-0');
+      container.classList.add('opacity-100');
+      panel.classList.remove('translate-x-full');
+    } else {
+      container.classList.add('pointer-events-none', 'opacity-0');
+      container.classList.remove('opacity-100');
+      panel.classList.add('translate-x-full');
+    }
+  }
+
+  triggerBtn.addEventListener('click', () => toggleCart(true));
+  closeBtn.addEventListener('click', () => toggleCart(false));
+  backdrop.addEventListener('click', () => toggleCart(false));
+
+  function updateCartUI() {
+    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartBadge.textContent = totalCount.toString();
+
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    subtotalElem.textContent = `$${subtotal.toFixed(2)}`;
+    checkoutBtn.disabled = cart.length === 0;
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = '<p class="text-center text-sm text-brand-muted py-12">Your cart is empty.</p>';
+      return;
+    }
+
+    cartItemsContainer.innerHTML = cart.map((item, index) => `
+      <div class="flex items-center gap-4 border-b border-canvas-200 pb-4">
+        <img src="${item.image}" alt="${item.name}" class="h-16 w-16 rounded-lg object-cover bg-canvas-100" />
+        <div class="flex-1">
+          <h4 class="text-sm font-bold text-brand-navy">${item.name}</h4>
+          <p class="text-xs text-brand-muted">${item.size}</p>
+          <div class="flex items-center gap-2 mt-2">
+            <button class="qty-btn h-6 w-6 rounded bg-canvas-100 text-xs font-bold" data-action="dec" data-index="${index}">-</button>
+            <span class="text-xs font-semibold">${item.quantity}</span>
+            <button class="qty-btn h-6 w-6 rounded bg-canvas-100 text-xs font-bold" data-action="inc" data-index="${index}">+</button>
+          </div>
+        </div>
+        <span class="text-sm font-bold text-brand-navy">$${(item.price * item.quantity).toFixed(2)}</span>
+      </div>
+    `).join('');
+
+    // Quantity modifiers
+    cartItemsContainer.querySelectorAll('.qty-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        const idx = parseInt(target.getAttribute('data-index')!);
+        const action = target.getAttribute('data-action');
+
+        if (action === 'inc') cart[idx].quantity++;
+        if (action === 'dec') {
+          cart[idx].quantity--;
+          if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+        }
+        updateCartUI();
+      });
+    });
+  }
+
+  // Hook into all product "Add to Cart" buttons
+  document.querySelectorAll('.add-to-cart-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const card = target.closest('.product-card')!;
+      const selectedSizeBtn = card.querySelector('.size-btn.bg-brand-navy');
+      const selectedSize = selectedSizeBtn ? selectedSizeBtn.getAttribute('data-size')! : 'Standard';
+
+      const item: CartItem = {
+        id: target.getAttribute('data-id')!,
+        name: target.getAttribute('data-name')!,
+        price: parseFloat(target.getAttribute('data-price')!),
+        size: selectedSize,
+        image: target.getAttribute('data-image')!,
+        quantity: 1
+      };
+
+      const existingIndex = cart.findIndex((i) => i.id === item.id && i.size === item.size);
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity++;
+      } else {
+        cart.push(item);
+      }
+
+      updateCartUI();
+      toggleCart(true);
+    });
+  });
+</script>

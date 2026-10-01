@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Our Story | My Sunshine Pet Apparel"
+  description="Meet Amy & Danny Bell, founders of My Sunshine Pet Apparel. Handcrafting durable, escape-proof, vibrant pet gear since 2018."
+>
+  <!-- Hero Section -->
+  <section class="border-b border-canvas-200 bg-canvas-100/60 py-16 sm:py-20">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
+      <span class="inline-block rounded-full bg-brand-sun/20 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-navy">
+        Handcrafted in the USA Since 2018
+      </span>
+      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+        Built for Big Pullers, Little Escapists, & Everything In Between
+      </h1>
+      <p class="mt-4 text-base text-brand-muted sm:text-lg">
+        The story of how an 80lb boxer named Olive Oyl inspired a line of unbreakable, fashion-forward gear.
+      </p>
+    </div>
+  </section>
+
+  <!-- Founder Story Grid -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <!-- Owner Photo -->
+      <div class="relative overflow-hidden rounded-3xl border border-canvas-200 bg-white shadow-lg">
+        <img 
+          src="/images/owners.jpg" 
+          alt="Amy and Danny Bell, founders of My Sunshine Pet Apparel" 
+          class="h-full w-full object-cover"
+        />
+        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent p-6 text-white">
+          <p class="text-lg font-bold">Amy & Danny Bell</p>
+          <p class="text-xs text-white/80">Founders & Craftsmen</p>
+        </div>
+      </div>
+
+      <!-- Story Narrative -->
+      <div class="space-y-5">
+        <h2 class="text-2xl font-extrabold text-brand-navy sm:text-3xl">
+          "Olive Oyl had broken every collar and harness I tried."
+        </h2>
+        <p class="text-sm leading-relaxed text-brand-muted sm:text-base">
+          I, Amy Bell, started My Sunshine Pet Apparel in 2018. I had an 80lb boxer who was aggressive toward other dogs. Olive Oyl had broken every single collar or harness I had ever bought. I wanted a collar and harness that wouldn’t just hold up to her strength, but was also vibrant and fashionable.
+        </p>
+        <p class="text-sm leading-relaxed text-brand-muted sm:text-base">
+          Unfortunately, there was nothing on the market that met both needs. I decided I would make them myself... and My Sunshine Pet Apparel was born!
+        </p>
+        <div class="rounded-2xl border border-brand-sun/40 bg-amber-50/60 p-4">
+          <p class="text-sm font-semibold text-brand-navy">
+            🐾 <strong>The Record Holds:</strong> Olive Oyl never broke a single My Sunshine Pet Apparel collar or harness.
+          </p>
+        </div>
+        <p class="text-sm text-brand-muted">
+          Our standard remains unwavering: heavy-duty box stitching, reinforced core webbing, and contoured hardware that delivers uncompromising quality, safety, and vibrant color.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Memorial Foundation Section -->
+  <section class="border-y border-canvas-200 bg-white py-16">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <div class="rounded-3xl border border-canvas-200 bg-canvas-50 p-8 sm:p-10 shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-coral">In Loving Memory of Beans & Ollie</span>
+        <h3 class="mt-2 text-2xl font-extrabold text-brand-navy sm:text-3xl">
+          Beans and Ollie's Memorial Foundation of Love
+        </h3>
+        <p class="mt-4 text-sm leading-relaxed text-brand-muted sm:text-base">
+          In November 2024, Amy and Danny experienced the heartbreaking loss of their beloved dogs, Beans and Ollie. To honor their memory, Amy established the <strong>Beans and Ollie's Memorial Foundation of Love</strong> with a mission to assist other dogs in finding forever homes.
+        </p>
+        <p class="mt-4 text-sm leading-relaxed text-brand-muted sm:text-base">
+          Through our <strong>"Adopt Me" collar donation initiative</strong>, we proudly collaborate with animal rescues to increase visibility for deserving dogs waiting for adoption.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a 
+            href="mailto:contact@mysunshinepetapparel.com?subject=Sponsoring an Adopt Me Collar" 
+            class="rounded-xl bg-brand-navy px-5 py-3 text-xs font-bold text-white shadow-sm hover:bg-brand-navy/90 transition-all"
+          >
+            Sponsor an "Adopt Me" Collar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verified Customer Reviews -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h3 class="text-2xl font-extrabold text-brand-navy sm:text-3xl">What Pet Parents Say</h3>
+      <p class="mt-2 text-sm text-brand-muted">Tested on everyday pullers, escape artists, and trail adventurers.</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-2xl border border-canvas-200 bg-white p-6 shadow-sm">
+        <div class="flex text-brand-sun text-sm">★★★★★</div>
+        <p class="mt-3 text-sm italic text-brand-navy">"I bought 2 large collars. I absolutely love how I got matching but in two different colors. They are easy to adjust and my dogs like them. I highly recommend them!"</p>
+        <p class="mt-4 text-xs font-bold text-brand-muted">— Heather M.</p>
+      </div>
+
+      <div class="rounded-2xl border border-canvas-200 bg-white p-6 shadow-sm">
+        <div class="flex text-brand-sun text-sm">★★★★★</div>
+        <p class="mt-3 text-sm italic text-brand-navy">"My tiny Ellie gave My Sunshine Pet Apparel a challenge. She was in a XXS harness that she learned how to slip out of. But her new custom harness fits her great!"</p>
+        <p class="mt-4 text-xs font-bold text-brand-muted">— Emily L.</p>
+      </div>
+
+      <div class="rounded-2xl border border-canvas-200 bg-white p-6 shadow-sm">
+        <div class="flex text-brand-sun text-sm">★★★★★</div>
+        <p class="mt-3 text-sm italic text-brand-navy">"The quality of their collars are out of this world! My dogs will only wear their collars from now on."</p>
+        <p class="mt-4 text-xs font-bold text-brand-muted">— Stacey B.</p>
+      </div>
+
+      <div class="rounded-2xl border border-canvas-200 bg-white p-6 shadow-sm">
+        <div class="flex text-brand-sun text-sm">★★★★★</div>
+        <p class="mt-3 text-sm italic text-brand-navy">"Amazing collar. We love the colors, bright pattern, and durability of our avo-cato collar! The human kid loves it too! Highly recommend them!"</p>
+        <p class="mt-4 text-xs font-bold text-brand-muted">— Jesse H.</p>
+      </div>
+
+      <div class="rounded-2xl border border-canvas-200 bg-white p-6 shadow-sm">
+        <div class="flex text-brand-sun text-sm">★★★★★</div>
+        <p class="mt-3 text-sm italic text-brand-navy">"I got my pup a cute new collar. I love the bright colors on his black fur! It is one that I can keep on him comfortably. I will definitely be back for more!"</p>
+        <p class="mt-4 text-xs font-bold text-brand-muted">— Heather Q.</p>
+      </div>
+
+      <div class="rounded-2xl border border-canvas-200 bg-white p-6 shadow-sm">
+        <div class="flex text-brand-sun text-sm">★★★★★</div>
+        <p class="mt-3 text-sm italic text-brand-navy">"My cats love the fishing pole! They have not stopped playing with it!"</p>
+        <p class="mt-4 text-xs font-bold text-brand-muted">— Amanda P.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

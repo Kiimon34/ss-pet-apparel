@@ -1,0 +1,46 @@
+---
+---
+<header class="sticky top-0 z-40 w-full border-b border-canvas-200/80 bg-white/95 backdrop-blur-md transition-all">
+  <div class="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center gap-4 group focus:outline-none">
+      <div class="h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-[#0c2649] p-1 shadow-md ring-2 ring-brand-navy/10 transition-transform duration-200 group-hover:scale-105">
+        <img
+          src="/images/logo.jpg"
+          alt="My Sunshine Pet Apparel Logo"
+          width="64"
+          height="64"
+          class="h-full w-full rounded-xl object-cover"
+        />
+      </div>
+      <div class="flex flex-col justify-center">
+        <span class="text-2xl font-black tracking-tight text-brand-navy leading-none">
+          My Sunshine <span class="text-brand-sun">Pet Apparel</span>
+        </span>
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-muted mt-1.5">
+          Handcrafted Gear
+        </span>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-8">
+      <nav class="hidden md:flex items-center gap-8 text-base font-bold text-brand-navy">
+        <a href="/#shop" class="hover:text-brand-sun transition-colors">Shop All</a>
+        <a href="/about" class="hover:text-brand-sun transition-colors">Our Story</a>
+      </nav>
+
+      <button
+        id="cart-toggle-btn"
+        type="button"
+        class="relative flex items-center justify-center rounded-2xl bg-canvas-100 p-3.5 text-brand-navy hover:bg-canvas-200 transition-colors focus:outline-none"
+        aria-label="Open Cart"
+      >
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <span id="cart-counter" class="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-sun text-xs font-black text-brand-navy shadow-md ring-2 ring-white">
+          0
+        </span>
+      </button>
+    </div>
+  </div>
+</header>

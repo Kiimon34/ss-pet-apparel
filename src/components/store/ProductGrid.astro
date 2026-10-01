@@ -1,0 +1,88 @@
+---
+import ProductCard from './ProductCard.astro';
+import { getCollection } from 'astro:content';
+
+// Fetch all markdown products created by Decap CMS
+const productEntries = await getCollection('products');
+
+// Map the entries to clean product objects for ProductCard
+const products = productEntries.map((entry) => ({
+  id: entry.slug,
+  ...entry.data,
+}));
+---
+
+<section id="shop" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <div>
+      <h2 class="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">Handcrafted Gear</h2>
+      <p class="mt-1 text-sm text-brand-muted">Pick your favorite pattern and match with matching leads and restraints.</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap gap-2" id="filter-container">
+      <button class="filter-btn active rounded-full bg-brand-navy px-4 py-1.5 text-xs font-bold text-white transition-all" data-filter="all">
+        All
+      </button>
+      <button class="filter-btn rounded-full bg-canvas-100 px-4 py-1.5 text-xs font-bold text-brand-navy hover:bg-canvas-200 transition-all" data-filter="collars">
+        Collars
+      </button>
+      <button class="filter-btn rounded-full bg-canvas-100 px-4 py-1.5 text-xs font-bold text-brand-navy hover:bg-canvas-200 transition-all" data-filter="leashes">
+        Leashes
+      </button>
+      <button class="filter-btn rounded-full bg-canvas-100 px-4 py-1.5 text-xs font-bold text-brand-navy hover:bg-canvas-200 transition-all" data-filter="safety">
+        Seatbelt Restraints
+      </button>
+    </div>
+  </div>
+
+  <!-- Product Listing -->
+  <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="products-grid">
+    {products.length === 0 ? (
+      <p class="col-span-full py-12 text-center text-sm text-brand-muted">No products found. Add products in the admin panel!</p>
+    ) : (
+      products.map((item) => (
+        <ProductCard product={item} />
+      ))
+    )}
+  </div>
+</section>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.product-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-brand-navy', 'text-white');
+        b.classList.add('bg-canvas-100', 'text-brand-navy');
+      });
+      btn.classList.add('bg-brand-navy', 'text-white');
+      btn.classList.remove('bg-canvas-100', 'text-brand-navy');
+
+      const filter = btn.getAttribute('data-filter');
+      cards.forEach((card) => {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll('.size-options').forEach((container) => {
+    const sizeBtns = container.querySelectorAll('.size-btn');
+    sizeBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        sizeBtns.forEach((b) => {
+          b.classList.remove('border-brand-navy', 'bg-brand-navy', 'text-white');
+          b.classList.add('border-canvas-200', 'bg-canvas-50', 'text-brand-navy');
+        });
+        btn.classList.add('border-brand-navy', 'bg-brand-navy', 'text-white');
+        btn.classList.remove('border-canvas-200', 'bg-canvas-50', 'text-brand-navy');
+      });
+    });
+  });
+</script>

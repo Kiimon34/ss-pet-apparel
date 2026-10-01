@@ -1,0 +1,26 @@
+local_backend: true
+backend:
+  name: git-gateway
+  branch: main
+
+# Where Decap writes files on your hard drive
+media_folder: "public/images/products"
+
+# How the browser accesses them from Astro's public root
+public_folder: "/images/products"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "src/content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Name", name: "name", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["collars", "leashes", "safety", "accessories"] }
+      - { label: "Price", name: "price", widget: "number", value_type: "float" }
+      - { label: "Pattern / Style", name: "pattern", widget: "string" }
+      - { label: "Badge Tag", name: "badge", widget: "string", required: false }
+      - { label: "Photo", name: "image", widget: "image", choose_url: false }
+      - { label: "Sizes", name: "sizes", widget: "list" }
+      - { label: "Description", name: "description", widget: "text" }

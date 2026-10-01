@@ -1,5 +1,13 @@
 ---
-import ProductGrid from '../components/store/ProductGrid.astro';
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "My Sunshine Pet Apparel | Handcrafted Dog Collars & Accessories",
+  description = "Vibrant, durable, handcrafted dog collars, leashes, and car restraints made with heavy-duty hardware."
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -8,38 +16,37 @@ import ProductGrid from '../components/store/ProductGrid.astro';
     <meta charset="utf-8" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Sunshine Pet Apparel | Handcrafted Dog Collars & Accessories</title>
+    <meta name="description" content={description} />
+    <title>{title}</title>
   </head>
   <body class="min-h-screen bg-canvas-50 text-brand-navy flex flex-col font-sans antialiased">
-
+    
     <!-- Top Navigation Header -->
-    <header class="sticky top-0 z-40 w-full border-b border-canvas-200/80 bg-white/95 backdrop-blur-md">
-      <div class="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-40 w-full border-b border-canvas-200/80 bg-white/80 backdrop-blur-md">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
-        <!-- Brand Identity with Square Logo Emblem -->
-        <a href="/" class="flex items-center gap-4 group focus:outline-none">
-          <div class="h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-[#0c2649] p-1 shadow-md ring-2 ring-brand-navy/10 transition-transform duration-200 group-hover:scale-105">
+        <!-- Brand Identity with Logo -->
+        <a href="/" class="flex items-center gap-3 group focus:outline-none">
+          <div class="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-brand-navy p-1 shadow-sm ring-1 ring-brand-navy/10 transition-transform group-hover:scale-105">
             <img
               src="/images/logo.jpg"
               alt="My Sunshine Pet Apparel Logo"
-              width="64"
-              height="64"
-              class="h-full w-full rounded-xl object-cover"
+              class="h-full w-full object-contain"
             />
           </div>
-          <div class="flex flex-col justify-center">
-            <span class="text-2xl font-black tracking-tight text-brand-navy leading-none">
+          <div class="flex flex-col">
+            <span class="text-base font-extrabold tracking-tight text-brand-navy leading-none">
               My Sunshine <span class="text-brand-sun">Pet Apparel</span>
             </span>
-            <span class="text-xs uppercase font-extrabold tracking-widest text-brand-muted mt-1.5">
+            <span class="text-[10px] uppercase font-bold tracking-widest text-brand-muted mt-1">
               Handcrafted Gear
             </span>
           </div>
         </a>
 
         <!-- Navigation Links & Cart Trigger -->
-        <div class="flex items-center gap-8">
-          <nav class="hidden md:flex items-center gap-8 text-base font-bold text-brand-navy">
+        <div class="flex items-center gap-6">
+          <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-brand-navy">
             <a href="/#shop" class="hover:text-brand-sun transition-colors">Shop All</a>
             <a href="/about" class="hover:text-brand-sun transition-colors">Our Story</a>
           </nav>
@@ -47,13 +54,13 @@ import ProductGrid from '../components/store/ProductGrid.astro';
           <button
             id="cart-toggle-btn"
             type="button"
-            class="relative flex items-center justify-center rounded-2xl bg-canvas-100 p-3.5 text-brand-navy hover:bg-canvas-200 transition-colors focus:outline-none"
+            class="relative flex items-center justify-center rounded-xl bg-canvas-100 p-2.5 text-brand-navy hover:bg-canvas-200 transition-colors focus:outline-none"
             aria-label="Open Cart"
           >
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            <span id="cart-counter" class="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-sun text-xs font-black text-brand-navy shadow-md ring-2 ring-white">
+            <span id="cart-counter" class="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-sun text-[11px] font-bold text-brand-navy shadow-sm">
               0
             </span>
           </button>
@@ -61,44 +68,9 @@ import ProductGrid from '../components/store/ProductGrid.astro';
       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Page Content -->
     <main class="flex-grow">
-      <!-- Hero Section -->
-      <section class="relative overflow-hidden bg-canvas-50 py-16 sm:py-24">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="max-w-2xl">
-            <span class="inline-block rounded-full bg-brand-sun/20 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-navy">
-              Handmade with Love & Heavy-Duty Hardware
-            </span>
-
-            <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-brand-navy sm:text-6xl">
-              Gear for every walk, ride, and romp.
-            </h1>
-
-            <p class="mt-6 text-base text-brand-muted sm:text-lg">
-              Vibrant, durable, handcrafted dog collars and travel restraints. Built with heavy-duty box stitching and contoured hardware.
-            </p>
-
-            <div class="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="/#shop"
-                class="rounded-xl bg-brand-navy px-6 py-3.5 text-sm font-bold text-white shadow-sm hover:bg-brand-navy/90 transition-all focus:outline-none"
-              >
-                Explore Collection
-              </a>
-              <a
-                href="/about"
-                class="rounded-xl border border-canvas-200 bg-white px-6 py-3.5 text-sm font-bold text-brand-navy shadow-sm hover:bg-canvas-100 transition-all focus:outline-none"
-              >
-                Meet the Maker
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Products Grid -->
-      <ProductGrid />
+      <slot />
     </main>
 
     <!-- Site Footer -->
@@ -107,13 +79,11 @@ import ProductGrid from '../components/store/ProductGrid.astro';
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3 items-start">
           <div>
             <div class="flex items-center gap-3">
-              <div class="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-[#0c2649] p-0.5 shadow-sm ring-1 ring-brand-navy/10">
+              <div class="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-brand-navy p-1 shadow-sm ring-1 ring-brand-navy/10">
                 <img
                   src="/images/logo.jpg"
                   alt="My Sunshine Pet Apparel Logo"
-                  width="48"
-                  height="48"
-                  class="h-full w-full rounded-lg object-cover"
+                  class="h-full w-full object-contain"
                 />
               </div>
               <div>
